@@ -6,7 +6,7 @@ private Double rmoney;
 private String rfileurl;
 private String tno;
 private Double smoney;
-private int isre;
+private int ispassed;
 
 public Double getRmoney(){ return rmoney;}
 public void setRmoney(Double x){rmoney=x;}
@@ -16,8 +16,8 @@ public String getTno(){ return tno;}
 public void setTno(String x){tno=x;}
 public Double getSmoney(){ return smoney;}
 public void setSmoney(Double x){smoney=x;}
-public int getIsre(){ return isre;}
-public void setIsre(int x){isre=x;}
+public int getIspassed(){ return ispassed;}
+public void setIspassed(int x){ispassed=x;}
 
 public reimbursement(){}
 @Override

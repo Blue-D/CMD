@@ -37,7 +37,21 @@ public class CompetitionHander {
 		jo.put("CNO", CNO);
 		return jo;
 	}
-	
+	/**
+	 * 获取所有比赛信息
+	 * @return
+	 */
+	public static JSONObject GetALLCompetition(){
+		List<competition> competitions=new ArrayList<>();
+		try {
+			competitions = BaseDao.Select("competition",null,null);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		JSONObject jo=new JSONObject();
+		jo.put("CNA", JSONArray.fromObject((competitions)));
+		return jo;
+	}
 	/**
 	 * 创建竞赛
 	 * @param CNA
@@ -87,7 +101,7 @@ public class CompetitionHander {
 	}
 	
 	/**
-	 * 开启比赛
+	 * 关闭比赛
 	 * @param TNA
 	 * @return
 	 * @throws CompetitionNotExistedException 

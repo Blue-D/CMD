@@ -2,12 +2,14 @@ package handler;
 
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import bean.budget;
 import bean.logininf;
 import bean.reimbursement;
 import bean.student;
@@ -71,16 +73,25 @@ public class TeamHandler {
 		lgif.setUsernum(tno);
 		//4.创建队员信息
 		teammember tm=new teammember();
-		tm.setSispassed(0);
+		tm.setIspassed(0);
 		tm.setSno(stu.getSno());
 		tm.setTno(tno);
-		//5.以事务的方式插入数据库
+		//5.创建预算与报销信息以及对应的文件路径
+		budget bug=new budget();
+		bug.setIspassed(0);
+		bug.setTno(tno);
+		reimbursement reim=new reimbursement();
+		reim.setIspassed(0);
+		reim.setTno(tno);
+		//6.以事务的方式插入数据库
 		List<Object> list=new ArrayList<>();
 		list.add(t);
 		list.add(lgif);
 		list.add(stu);
 		list.add(tm);
-		//6.判断是否插入成功{
+		list.add(bug);
+		list.add(reim);
+		//7.判断是否插入成功{
 		if(dao.BaseDao.Insertcommit(list)) return lgif;
 		else{
 			return null;
@@ -97,13 +108,49 @@ public class TeamHandler {
 		List<Map> teamlist;
 		try {
 			teamlist = BaseDao.Select("team",null,new String[]{"TNO='"+TNO+"'"});
-			return JSONObject.fromObject(teamlist.get(0));
+			JSONObject jo=JSONObject.fromObject(teamlist.get(0));
+			jo.putAll(TeamExam(TNO));
+			return	jo ;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	
+	public static JSONObject TeamExam(String TNO){
+		List<Map> stulist=BaseDao.getDataWithCondition("teammember", new String[]{"SNO","IsPassed"}, new String[]{"TNO='"+TNO+"'"});
+		List<Map> buglist=BaseDao.getDataWithCondition("budget", new String[]{"IsPassed"}, new String[]{"TNO='"+TNO+"'"});
+		JSONObject jo=new JSONObject();
+		JSONArray stureason=new JSONArray();
+		int flag=1;
+		for(Map map:stulist){
+			if(map.get("ispassed").equals("0")){
+				flag=0;
+				stureason.add(map.get("sno"));
+			}
+		}
+		int bud=0;
+		for(Map map:buglist){
+			if(map.get("ispassed").equals("0")) {
+				flag=0;
+				bud=1;
+			}
+		}
+		if(flag==1){
+			jo.put("ispassed", flag);
+		}else{
+			if(stureason.size()>0 && bud==1){
+				jo.put("reason", "存在未通过的队员,且预算未通过");
+			}else if(stureason.size()>0){
+				jo.put("reason", "存在未通过的队员");
+			}else{
+				jo.put("reason", "预算未通过");
+			}
+		}
+		return jo;
+	}
+	
 	
 	/**
 	 * 创建密码
@@ -114,5 +161,8 @@ public class TeamHandler {
 		return String.format("%09d", pass);
 	}
 	
+	public static void main(String[] args) {
+		System.out.println(GetTeamInf("201701001"));
+	}
 
 }

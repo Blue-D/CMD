@@ -284,6 +284,7 @@ public class BaseDao {
 	 */
 	public static boolean Insertcommit(List<Object> list) {
 		Connection conn = getConn();
+		boolean flag=true;
 		PreparedStatement[] pstmts = new PreparedStatement[list.size()];
 		try {
 			conn.setAutoCommit(false);
@@ -324,11 +325,11 @@ public class BaseDao {
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			flag=false;
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-				return false;
 			}
 		} finally {
 			try {
@@ -343,7 +344,7 @@ public class BaseDao {
 			}
 
 		}
-		return true;
+		return flag;
 	}
 
 	/**
@@ -430,11 +431,12 @@ public class BaseDao {
 					try {
 						// 8.创建该属性对应的Get方法
 						Class type = DaoUtil.GetType(tc, dName);
-						if(type.getSimpleName().equals("Year")==false){
-							Method get = rs.getClass().getMethod(DaoUtil.CreateGetOSet("get", type.getSimpleName()),int.class);
+						if (type.getSimpleName().equals("Year") == false) {
+							Method get = rs.getClass().getMethod(DaoUtil.CreateGetOSet("get", type.getSimpleName()),
+									int.class);
 							Method Set = tc.getMethod(DaoUtil.CreateGetOSet("set", dName), type);
 							Set.invoke(t, get.invoke(rs, i));
-						}else{
+						} else {
 							Method Set = tc.getMethod(DaoUtil.CreateGetOSet("set", dName), type);
 							Set.invoke(t, Year.of(Integer.valueOf(rs.getString(i).substring(0, 4))));
 						}
@@ -510,7 +512,7 @@ public class BaseDao {
 			while (rs.next()) {
 				Map<String, String> map = new HashMap();
 				for (int i = 1; i <= col; i++) {
-					map.put(rs.getMetaData().getColumnName(i), rs.getString(i));
+					map.put(DaoUtil.BigToSmall(rs.getMetaData().getColumnName(i)), rs.getString(i));
 				}
 				list.add(map);
 			}
@@ -882,4 +884,36 @@ public class BaseDao {
 		}
 		return pstmt;
 	}
+
+	/**
+	 * 用于直接执行某个单一SQL操作，因不返回结果集，请不要用于select
+	 * 
+	 * @param SQL
+	 * @return
+	 */
+	public static int Excute(String SQL) {
+		Connection conn = getConn();
+		int i = 0;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			i = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return 0;
+	}
+
 }

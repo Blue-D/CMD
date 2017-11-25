@@ -60,31 +60,29 @@ public class TeamMemberHandler {
 	 * @param TNO
 	 * @return
 	 */
-	public static List<String> GetAllTeamMember(String TNO){
-		List<Map> list=BaseDao.getDataWithCondition("teammember", new String[]{"SNO"}, new String[]{"TNO='"+TNO+"'"});
-		List<String> SNOlist=new ArrayList<>();
-		for(Map m:list){
-			SNOlist.add(m.get("SNO").toString());
-		}
-		return SNOlist;
+	public static List<Map> GetAllTeamMember(String TNO){
+		List<Map> list=BaseDao.getDataWithCondition("teammember", new String[]{"SNO","IsPassed"}, new String[]{"TNO='"+TNO+"'"});
+		return list;
 	}
 	
 	public static JSONArray GetAllTeamMemberInf(String TNO){
-		List<String> SNOlist=GetAllTeamMember(TNO);
-		List<student> students=new ArrayList<>();
-		for(String SNO:SNOlist){
+		List<Map> SNOlist=GetAllTeamMember(TNO);
+		JSONArray result=new JSONArray();
+		for(Map SNO:SNOlist){
+			JSONObject jo=new JSONObject();
 			try {
-				List<student> stu=BaseDao.Select("student", null, new String[]{"SNO='"+SNO+"'"});
-				students.addAll(stu);
+				List<student> stu=BaseDao.Select("student", null, new String[]{"SNO='"+SNO.get("sno")+"'"});
+				jo=JSONObject.fromObject(stu.get(0));
+				jo.put("IsPassed", SNO.get("ispassed"));
+				result.add(jo);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return JSONArray.fromObject(students);
+		return result;
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(GetAllTeamMemberInf("20171001"));
+		System.out.println(GetAllTeamMemberInf("201701001"));
 	}
 }

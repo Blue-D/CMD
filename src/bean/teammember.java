@@ -2,19 +2,19 @@ package bean;
 import java.sql.*;
 
 public class teammember extends Bean implements Table{
-private String sreason;
+private String reason;
 private String tno;
 private String sno;
-private int sispassed;
+private int ispassed;
 
-public String getSreason(){ return sreason;}
-public void setSreason(String x){sreason=x;}
+public String getReason(){ return reason;}
+public void setReason(String x){reason=x;}
 public String getTno(){ return tno;}
 public void setTno(String x){tno=x;}
 public String getSno(){ return sno;}
 public void setSno(String x){sno=x;}
-public int getSispassed(){ return sispassed;}
-public void setSispassed(int x){sispassed=x;}
+public int getIspassed(){ return ispassed;}
+public void setIspassed(int x){ispassed=x;}
 
 public teammember(){}
 @Override

@@ -7,7 +7,7 @@ private String tno;
 private int issigningup;
 private String cerurl;
 private String phourl;
-private int cerispassed;
+private int ispassed;
 private String reason;
 private String videourl;
 
@@ -21,8 +21,8 @@ public String getCerurl(){ return cerurl;}
 public void setCerurl(String x){cerurl=x;}
 public String getPhourl(){ return phourl;}
 public void setPhourl(String x){phourl=x;}
-public int getCerispassed(){ return cerispassed;}
-public void setCerispassed(int x){cerispassed=x;}
+public int getIspassed(){ return ispassed;}
+public void setIspassed(int x){ispassed=x;}
 public String getReason(){ return reason;}
 public void setReason(String x){reason=x;}
 public String getVideourl(){ return videourl;}

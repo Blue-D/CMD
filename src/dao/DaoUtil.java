@@ -33,7 +33,7 @@ import bean.Template;
  * @author 命空
  *
  */
-class DaoUtil {
+public class DaoUtil {
 	/**
 	 * 获取类型名
 	 * @param t

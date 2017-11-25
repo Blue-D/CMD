@@ -97,4 +97,22 @@
   	<servlet-name>GetCanSignUpCompetitionServlet</servlet-name>
  	<url-pattern>/servlet/GetCanSignUpCompetitionServlet.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>GetCompetionAllInfServlet</servlet-name>
+  	<servlet-class>servlet.GetCompetionAllInfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetCompetionAllInfServlet</servlet-name>
+ 	<url-pattern>/servlet/GetCompetionAllInfServlet.do</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>FileUpLoadServlet</servlet-name>
+  	<servlet-class>servlet.FileUpLoadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FileUpLoadServlet</servlet-name>
+ 	<url-pattern>/servlet/FileUpLoadServlet.do</url-pattern>
+  </servlet-mapping>
 </web-app>
