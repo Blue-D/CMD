@@ -20,7 +20,7 @@ public advisor(){}
 
 @Override
 public String GetPrivateKey() {
-	return "tno";
+	return "tno;ana";
 }
 
 }

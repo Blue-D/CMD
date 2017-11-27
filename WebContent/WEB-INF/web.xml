@@ -107,12 +107,21 @@
  	<url-pattern>/servlet/GetCompetionAllInfServlet.do</url-pattern>
   </servlet-mapping>
   
-    <servlet>
+  <servlet>
   	<servlet-name>FileUpLoadServlet</servlet-name>
   	<servlet-class>servlet.FileUpLoadServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>FileUpLoadServlet</servlet-name>
  	<url-pattern>/servlet/FileUpLoadServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AddAdvisorServlet</servlet-name>
+  	<servlet-class>servlet.AddAdvisorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddAdvisorServlet</servlet-name>
+ 	<url-pattern>/servlet/AddAdvisorServlet.do</url-pattern>
   </servlet-mapping>
 </web-app>
