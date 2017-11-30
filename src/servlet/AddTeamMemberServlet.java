@@ -32,9 +32,15 @@ public class AddTeamMemberServlet extends HttpServlet{
 		stu.setSna(SNA);
 		stu.setSno(SNO);
 		//1.2获取队伍编号
-		String TNO=req.getParameter("TNO");
-		//2.插入队伍返回结果
 		JSONObject jo=new JSONObject();
+		String TNO=req.getParameter("TNO");
+		if(TNO==null || SNO==null){
+			jo.put("Sucessed", "0");
+			jo.put("reason", "主要辨别信息为空，插入或更新失败");
+			resp.getOutputStream().write(jo.toString().getBytes());
+			return ;
+		}
+		//2.插入队伍返回结果
 		try {
 			if(TeamMemberHandler.InsertMenber(TNO, stu)) {
 				jo.put("Sucessed", 1);

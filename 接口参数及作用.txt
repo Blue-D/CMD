@@ -1,0 +1,88 @@
+1.AddAdvisorServlet 
+	参数:队伍编号 	TNO
+	     姓名       ANA
+	     电话	Atele
+	     邮箱	Ae-mail
+	返回值：json格式
+		Sucessed 0/1（失败/成功）
+		reason   原因（只在sucessed置0时有）
+	作用：1).更新或者修改指导老师信息，当唯一标识TNO&ANA为空时直接返回失败，当唯一标识已经存在时更新，不存在时创建
+	      2).除唯一标识外其余信息可以为空
+2.AddTeamMemberServlet
+	参数：学号 	SNO
+	      姓名	SNA
+	      专业	Major
+	      电话	tele
+	      邮箱	email
+	      身份证	ID
+	      队伍编号  TNO
+	返回值:json格式
+	       Sucessed 0/1（失败/成功）
+	       reason   原因（只在sucessed置0时有）
+	作用：1).修改或者更新队员信息，当唯一标识SNO&TNO为空时直接返回失败，当唯一标识已经存在时进行更新，不存在创建
+3.CompetionStatusSetSevlet
+	参数：操作	Opr	仅仅只有两个操作Open/Close
+	      比赛名	CNA
+	返回值：json格式
+		Sucessed 0/1（失败/成功）
+	        reason   原因（只在sucessed置0时有）
+	作用：修改比赛开启状态
+4.CreateCompetitionServlet
+	参数:比赛名	CNA
+	     省/国	SOG	只有两个参数S/G
+	     校内级别	Level
+	返回值：json格式
+	 	Sucessed 0/1（失败/成功）
+	        reason   原因（只在sucessed置0时有）
+	作用：创建/修改比赛
+5.CreateTeamServlet
+	参数：队名	TNA
+	      比赛编号  CNO
+	      队长姓名  SNA
+		  学号	SNO
+		  专业  major
+		  电话  tele
+		  身份证ID
+	返回：Sucessed 0/1（失败/成功）
+	      reason   原因（只在sucessed置0时有）
+	      user     用户名（只在sucessed置1时有）
+	      pass     密码（只在sucessed置1时有）
+	作用：创建队伍，当且仅当创建成功时（队伍所有相关信息建立都成功），返回为队伍创建的账号与密码
+6.ExamingServlet
+	参数：审核的类型（目标表名）	table		{teammember,budget,reimbursement,precompetitiondata}
+	      该类型的主键信息		PK_value
+	      审核结果			ispassed
+	      未通过的原因		reason
+	返回值：Sucessed 0/1（失败/成功）
+	        reason   原因（只在sucessed置0时有）
+	作用：审核某项事务，该事务只能是上述的某一值之一
+7.FileUpLoadServlet
+	参数：队伍编号	TNO
+	      一级路径	file_tableName
+	      二级路径	Second
+	返回值：无
+	作用：针对队伍所产生的报销/预算明细，及比赛资料进行上传处理
+8.GetCanSignUpCompetitionServlet
+	参数：无
+	返回值：json格式
+		CNA:比赛名
+		CNO:比赛编号
+	作用：返回当前可以报名的比赛
+9.GetCompetionAllInfServlet
+	参数：无
+	返回值：json格式
+	作用：返回所有比赛的所有信息
+10.GetTeamAllMenberInfServlet
+	参数：比赛编号	TNO
+	返回值：json格式
+	作用：返回所有的队员信息
+11.GetTeamInfServlet
+	参数：无
+	返回值：json格式
+	作用返回所有的队伍信息
+
+
+
+
+
+

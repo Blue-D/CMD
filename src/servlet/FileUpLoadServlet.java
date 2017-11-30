@@ -29,12 +29,12 @@ public class FileUpLoadServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String TNO=null;		//队伍编号
-		String f_tn="";		//表名
-		String Se_n="";		//二级目录名
+		String f_tn=null;		//表名
+		String Se_n=null;		//二级目录名
 		String Finalpath="";		//文件最终路径
 		//1.创建工厂
 		DiskFileItemFactory sff=new DiskFileItemFactory();
-		//2.创建文件上传解析器
+		//2.创建文件上传解析器	
 		ServletFileUpload upload=new ServletFileUpload(sff);
 		//3.设置编码格式
 		upload.setHeaderEncoding("UTF-8");
@@ -63,7 +63,7 @@ public class FileUpLoadServlet extends HttpServlet {
 					}
 				}
 			}
-			if(TNO==null || f_tn==null){
+			if(TNO==null || f_tn==null || Se_n==null){
 				System.out.println("有数值为空请重试");
 				return ;
 			}
