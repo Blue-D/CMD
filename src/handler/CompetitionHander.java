@@ -60,7 +60,7 @@ public class CompetitionHander {
 	 * @return
 	 * @throws CompetitionExistedException
 	 */
-	public static boolean CreateCompetion(String CNA,String SOG,String level) throws CompetitionExistedException{
+	public static boolean CreateCompetion(String CNA,String SOG,String level,int MaxTeamMember) throws CompetitionExistedException{
 		if(CompetionExist(CNA)==true){
 			throw new CompetitionExistedException();
 		}
@@ -69,6 +69,7 @@ public class CompetitionHander {
 		com.setSog(SOG);
 		com.setLevel(level);
 		com.setReginpro(0);
+		com.setMaxteammember(MaxTeamMember);
 		if(BaseDao.Insert(com)==1) return true;
 		else{
 			return false;

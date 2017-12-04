@@ -7,7 +7,7 @@ private String level;
 private String cno;
 private String cna;
 private int reginpro;
-
+private int maxteammember;
 
 public String getSog(){ return sog;}
 public void setSog(String x){sog=x;}
@@ -19,11 +19,17 @@ public String getCna(){ return cna;}
 public void setCna(String x){cna=x;}
 public int getReginpro() {	return reginpro;}
 public void setReginpro(int reginpro) {	this.reginpro = reginpro;}
-
+public int getMaxteammember() {
+	return maxteammember;
+}
+public void setMaxteammember(int maxteammember) {
+	this.maxteammember = maxteammember;
+}
 
 public competition(){}
 @Override
 public String GetPrivateKey() {
 	return "cno";
 }
+
 }

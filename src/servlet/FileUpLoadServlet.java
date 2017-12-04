@@ -38,6 +38,7 @@ public class FileUpLoadServlet extends HttpServlet {
 		ServletFileUpload upload=new ServletFileUpload(sff);
 		//3.设置编码格式
 		upload.setHeaderEncoding("UTF-8");
+		upload.setFileSizeMax(1024*1024*1024);
 		//4.如果是以传统方式发送的数据，直接return
 		if(!ServletFileUpload.isMultipartContent(req)){
 			return ;

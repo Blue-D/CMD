@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import bean.competition;
 import bean.student;
+import bean.team;
 import bean.teammember;
 import dao.BaseDao;
 import exception.TeamMenberMaxException;
@@ -14,6 +16,18 @@ import net.sf.json.JSONObject;
 public class TeamMemberHandler {
 	
 	private static int MaxTeamMember=3;
+	
+	protected static int GetMaxTeamMemer(String CNO){
+		int max=0;
+		try {
+			List<competition> MAX=BaseDao.Select("competition", new String[]{"MaxTeamMember"}, new String[]{"CNO='"+CNO+"'"});
+			max=MAX.get(0).getMaxteammember();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return max;
+	}
+	
 	
 	protected static int GetNowTeamMemberNum(String TNO){
 		List<teammember> teammember=new ArrayList<>();
@@ -32,7 +46,16 @@ public class TeamMemberHandler {
 	 * @throws TeamMenberMaxException
 	 */
 	public static boolean InsertMenber(String TNO ,student stu) throws TeamMenberMaxException{
-		if(GetNowTeamMemberNum(TNO)>=3){
+		String CNO="";
+		try {
+			List<team> t =BaseDao.Select("team", new String[]{"CNO"}, new String[]{"TNO='"+TNO+"'"});
+			CNO=t.get(0).getCno();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int max=GetMaxTeamMemer(CNO);
+		if(GetNowTeamMemberNum(TNO)>=max){
 			throw new TeamMenberMaxException();
 		}
 		teammember teammember=new teammember();

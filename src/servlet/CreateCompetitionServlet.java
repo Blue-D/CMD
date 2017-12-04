@@ -20,10 +20,11 @@ public class CreateCompetitionServlet extends HttpServlet{
 		String CNA=req.getParameter("CNA");
 		String SOG=req.getParameter("SOG");
 		String Level=req.getParameter("Level");
+		String MaxTeamMember=req.getParameter("MaxTeamMember");
 		JSONObject result=new JSONObject();
 		//2.创建队伍
 		try {
-			if(CompetitionHander.CreateCompetion(CNA, SOG, Level)){
+			if(CompetitionHander.CreateCompetion(CNA, SOG, Level,Integer.valueOf(MaxTeamMember))){
 				result.put("Sucessed", 1);
 			}else{
 				result.put("Sucessed", 0);

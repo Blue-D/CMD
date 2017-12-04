@@ -818,7 +818,69 @@ public class BaseDao {
 		}
 		return i;
 	}
+	
+	public static boolean UpdateCommit(List<Object> objs,List<String> pri_key_values){
+		Connection conn = getConn();
+		boolean flag=true;
+		PreparedStatement[] pstmts = new PreparedStatement[objs.size()];
+		try {
+			conn.setAutoCommit(false);
+			int i = 0;
+			for (Object obj : objs) {
+				try {
+					// 1.判断是否存在唯一标识组
+					Method Pk = obj.getClass().getMethod("GetPrivateKey");
+					String PK_name = (String) Pk.invoke(obj);
+					if (PK_name == null) {
+						pstmts[i] = Insert(obj, conn);
+						pstmts[i].executeUpdate();
+						continue;
+					}
+					// 2.条件组装
+					String[] pks = PK_name.split(";");
+					String[] condition = new String[pks.length];
+					String[] cvalue=pri_key_values.get(i).split(";");
+					for (int p = 0; p <= pks.length - 1; p++) {
+						condition[p] = pks[p] + "='" + cvalue[p] + "'";
+					}
+					// 3.先更新数据，如果更新失败则插入
+					pstmts[i] = Update(obj, condition, conn);
+					System.out.println(obj.getClass().getName());
+					int x=pstmts[i].executeUpdate();
+					if(x==0){
+						return false;
+					}
+				} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+						| InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				i++;
+			}
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			flag=false;
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				for (PreparedStatement ps : pstmts) {
+					if (ps != null)
+						ps.close();
+				}
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
+		}
+		return flag;
+	}
+	
 	/**
 	 * 用于事务的update
 	 * 

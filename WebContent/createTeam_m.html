@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!--<meta charset="utf-8">-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<title>创建队伍</title>
+	<!-- Bootstrap -->
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+	<link href="assets/styles.css" rel="stylesheet" media="screen">
+	
+<!-- <script src="vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script> -->
+</head>
+<body>
+	<div class="alert alert-error" id="finish_warning" style="display:none">
+		
+		<span>
+			<strong>注意!</strong>请将信息填写完全，否则无法通过。
+		</span>
+	</div>
+	<!-- wizard -->
+	<div class="row-fluid section" style="width:80%;margin: 0 auto;">
+		<!-- block -->
+		<div class="block">
+			<div class="navbar navbar-inner block-header">
+				<div style="width:20%;">
+					<a href="login.html">
+						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTA5NjI2NTQ2MjU4IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMDAgMTAwMCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE4ODMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTAwIDBjMjc2LjE1NjMgMCA1MDAgMjIzLjg0MzggNTAwIDUwMHMtMjIzLjg0MzggNTAwLTUwMCA1MDAtNTAwLTIyMy44NDM4LTUwMC01MDAgMjIzLjg0MzgtNTAwIDUwMC01MDB6TTUwMCA5MDYuMjVjMjI0LjM3NSAwIDQwNi4yNS0xODEuODc1IDQwNi4yNS00MDYuMjVzLTE4MS44NzUtNDA2LjI1LTQwNi4yNS00MDYuMjUtNDA2LjI1IDE4MS44NzUtNDA2LjI1IDQwNi4yNSAxODEuODc1IDQwNi4yNSA0MDYuMjUgNDA2LjI1ek0yMDUuODEyNSA0NTUuODEyNWwyNTAtMjUwYzI0LjQwNjMtMjQuNDA2MyA2My45Njg4LTI0LjQwNjMgODguMzc1IDBzMjQuNDA2MyA2My45Njg4IDAgODguMzc1bC0xNDMuMzEyNSAxNDMuMzEyNWgzNDkuMTI1YzM0LjUzMTMgMCA2Mi41IDI3Ljk2ODggNjIuNSA2Mi41cy0yNy45Njg4IDYyLjUtNjIuNSA2Mi41aC0zNDkuMTI1bDE0My4zMTI1IDE0My4zMTI1YzI0LjQwNjMgMjQuNDA2MyAyNC40MDYzIDYzLjk2ODggMCA4OC40MDYzLTEyLjIxODggMTIuMTg3NS0yOC4xODc1IDE4LjMxMjUtNDQuMTg3NSAxOC4zMTI1cy0zMi02LjA5MzgtNDQuMTg3NS0xOC4zMTI1bC0yNTAtMjUwYy0yNC40MDYzLTI0LjQwNjMtMjQuNDA2My02My45Njg4IDAtODguMzc1eiIgcC1pZD0iMTg4NCIgZmlsbD0iIzcwNzA3MCI+PC9wYXRoPjwvc3ZnPg=="
+						style="width:10%;">
+					</a>返回
+					
+				</div>
+				
+				<div class="muted pull-left">创建队伍</div>
+			</div>
+			<div class="block-content collapse in">
+				<div class="span12">
+					<div id="rootwizard">
+						<div class="navbar">
+							<div class="navbar-inner">
+								<div class="container">
+									<ul>
+										<li><a href="#tab1" data-toggle="tab">1、选择比赛</a></li>
+										<li><a href="#tab2" data-toggle="tab">2、队伍信息</a></li>
+										<li><a href="#tab3" data-toggle="tab">3、联系人</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="bar" class="progress progress-striped active">
+							<div class="bar"></div>
+						</div>
+						<div class="tab-content">
+							
+							<div class="tab-pane" id="tab1">
+								<form class="form-horizontal">
+									<fieldset>
+										<div class="control-group">
+											<label class="control-label" for="competition">比赛</label>
+											<div class="controls">
+												<select id="competition">
+													
+												</select>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<div class="tab-pane" id="tab2">
+								<form class="form-horizontal">
+									<fieldset>
+										<div class="control-group">
+											<label class="control-label" for="teamName">队伍名称</label>
+											<div class="controls">
+												<input class="input-xlarge focused" 
+												id="teamName" type="text" value="" maxlength="50">
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<div class="tab-pane" id="tab3">
+								<form class="form-horizontal">
+									<fieldset>
+										<div class="control-group">
+											<label class="control-label" for="contactName">姓名</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactName" type="text" value="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="contactSpecialty">专业</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactSpecialty" type="text" value="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="contactStuID">学号</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactStuID" type="number" value="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="contactTel">联系方式</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactTel" type="number" value="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="contactEmail">邮箱</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactEmail" type="email" value="">
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="contactID">身份证</label>
+											<div class="controls">
+												<input class="input-xlarge focused" id="contactID" type="text" value="">
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<ul class="pager wizard">
+								<li class="previous first" style="display:none;"><a href="javascript:void(0);">第一步</a></li>
+								<li class="previous"><a href="javascript:void(0);">上一步</a></li>
+								<li class="next last" style="display:none;"><a href="javascript:void(0);">最后一步</a></li>
+								<li class="next"><a href="javascript:void(0);">下一步</a></li>
+								<li class="next finish" style="display:none;"><a href="javascript:;">完成</a></li>
+							</ul>
+						</div>  
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /block -->
+	</div>
+	<!-- /wizard -->
+
+	<!--弹窗-->
+	<div class="modal fade" id="modalCreate">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title" id="modalTitle">
+	        	创建队伍成功<span style="color:red;">(请记住用户名密码之后不再提示)</span>
+	        </h4>
+	      </div>
+	      <div class="modal-body" id="modalContent">
+			请记住用户名密码！<br>
+			用户名：<span id="username">XXX</span><br>
+			密码：<span id="password">xxx</span><br>    
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-primary" id="confirmInfo">确定</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<script src="vendors/jquery-1.9.1.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+	<script src="vendors/wizard/jquery.bootstrap.wizard.min.js"></script>
+
+	<script>
+		$(function() {
+			$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+				var $total = navigation.find('li').length;
+				var $current = index+1;
+				var $percent = ($current/$total) * 100;
+				$('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                	$('#rootwizard').find('.pager .next').hide();
+                	$('#rootwizard').find('.pager .finish').show();
+                	$('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                	$('#rootwizard').find('.pager .next').show();
+                	$('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+			
+			$('#rootwizard .finish').click(function() {
+				var focused_length = $(".focused").length;
+				var myCount = 0;//计数器
+				$(".focused").each(function(index, dom){
+					if(this.value == "") {
+						$("#finish_warning").css({"display":"block"});
+						$(this).parent().parent().addClass("error");
+						var target = $(this).parent().parent().parent().parent().parent().attr("id");
+						$('#rootwizard').find("a[href*='" + target + "']").trigger('click');	
+					} else {
+						myCount++;
+						$(this).parent().parent().removeClass("error");
+					}
+
+					if(myCount == focused_length){
+						var tel = $("#contactTel").val();
+						var email = $("#contactEmail").val();
+						var ID = $("#contactID").val();
+						if(judgeInput(tel, email, ID)) {
+							postForm();
+						}
+						
+					}
+				});
+			});
+			
+			$("#confirmInfo").click(function() {
+				location.href = "login.html";
+			});
+		});
+
+		
+		
+		function judgeInput(tel, email, ID){
+			telJudge(tel);
+			emailJudge(email);
+			IDJudge(ID);
+			if( !( telJudge(tel) && emailJudge(email)
+					&& IDJudge(ID) ) ) {
+				alert("非法输入");
+				return false;
+			} 
+			return true;
+		}
+		
+		function telJudge(tel) {
+			var reg = /^1\d{10}$/;
+			if(!reg.test(tel)) {
+				
+				$("#contactTel").parent().parent().addClass("error");
+				return false;
+			} else {
+				$("#contactTel").parent().parent().removeClass("error");
+				return true;
+			}
+			
+		}
+		
+		function emailJudge(email) {
+			var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+			if(!reg.test(email)) {
+				
+				$("#contactEmail").parent().parent().addClass("error");
+				return false;
+			} else {
+				$("#contactEmail").parent().parent().removeClass("error");
+				return true;
+			}
+			
+		}
+		
+		function IDJudge(ID) {
+			var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+			if(!reg.test(ID)) {
+				
+				$("#contactID").parent().parent().addClass("error");
+				return false;
+			} else {
+				$("#contactID").parent().parent().removeClass("error");
+				return true;
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		//比赛名称ajax获取
+		getAllCompetition();
+		function getAllCompetition(){
+			$.ajax({    
+			    type:'post',        
+			    url:'/CMD/servlet/GetCanSignUpCompetitionServlet.do',    
+			    data:{  
+			    },   
+			    cache:false,      
+			    success:function(data){ 
+			      console.log(data);
+			      var dataJSONObj = eval("(" + data+ ")");
+			      var competiotionName = dataJSONObj.CNA;
+			      var competitionID = dataJSONObj.CNO;
+			      addCompetition(competiotionName, competitionID);
+			    },
+			    error:function(){
+			    	console.log("请求数据失败");
+			    }    
+			});
+		}
+		
+		function addCompetition(competiotionName, competitionID){
+			$.each(competiotionName, function(index, value){
+				var option = $("<option value='"+ competitionID[index] +"'>"+ 
+						value + "</option>");
+				$("#competition").append(option);
+			});
+			
+		}
+		
+		//提交表单，获取返回值处理
+		function postForm(){
+			var competition = $("#competition").val();
+			var teamName = $("#teamName").val();
+			var contactName = $("#contactName").val();
+			var contactSpecialty = $("#contactSpecialty").val();
+			var contactStuID = $("#contactStuID").val();
+			var contactTel = $("#contactTel").val();
+			var contactEmail = $("#contactEmail").val();
+			var contactID = $("#contactID").val();
+			$.ajax({    
+			    type:'post',        
+			    url:'/CMD/servlet/CreateTeamServlet.do',    
+			    data:{  
+			    	TNA : teamName,
+			    	CNO : competition,
+			    	SNA : contactName,
+			    	SNO : contactStuID,
+			    	Major : contactSpecialty,
+			    	tele : contactTel,
+			    	email : contactEmail,
+			    	ID : contactID
+			    },   
+			    cache:false,      
+			    success:function(data){ 
+			      console.log(data);
+			      var dataJSONObj = eval("(" + data+ ")");
+			      if(dataJSONObj.Sucessed == "1") {
+			    	successModal(dataJSONObj.user, dataJSONObj.pass);  
+			      } else {
+					errorModal();
+			      }
+			    },
+			    error:function(){
+			    	console.log("请求数据失败");
+			    	errorModal();
+			    }    
+			});
+		}
+		
+		function successModal(username, password) {
+			$("#modalTitle").html("创建队伍成功<span style='color:red;'>(请记住用户名密码之后不再提示)</span>");
+			$("#modalContent").html("请记住用户名密码！<br>用户名：<span id='username'>XXX</span><br>密码：<span id='password'>xxx</span><br> ");
+			$("#username").html(username);
+			$("#password").html(password);
+	    	$("#modalCreate").modal("toggle");
+		}
+		
+		function errorModal() {
+			$("#modalTitle").html("请求失败");
+			$("#modalContent").html("");
+	    	$("#modalCreate").modal("toggle");
+		}
+	</script>
+</body>
+</html>

@@ -14,7 +14,7 @@
 	<filter-class>filter.EncodingFilter</filter-class>  
 	<init-param>
 		<param-name>encoding</param-name>
-		<param-value>UTF-8</param-value>
+		<param-value>utf-8</param-value>
 	</init-param>
 	<init-param>
 		<param-name>forceEncoding</param-name>
@@ -123,5 +123,14 @@
   <servlet-mapping>
   	<servlet-name>AddAdvisorServlet</servlet-name>
  	<url-pattern>/servlet/AddAdvisorServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>StudentUpdateServlet</servlet-name>
+  	<servlet-class>servlet.StudentUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentUpdateServlet</servlet-name>
+ 	<url-pattern>/servlet/StudentUpdateServlet.do</url-pattern>
   </servlet-mapping>
 </web-app>
