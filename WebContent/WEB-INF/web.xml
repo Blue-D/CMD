@@ -26,22 +26,44 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
+   <filter>
+	<filter-name>login</filter-name>
+	<filter-class>filter.LoginFilter</filter-class>
+	<init-param>
+		<param-name>FristPath</param-name>
+		<param-value>/index</param-value>
+	</init-param>
+	<init-param>
+		<param-name>SecondPath</param-name>
+		<param-value>/Second</param-value>
+	</init-param>
+	<init-param>
+		<param-name>ThirdPath</param-name>
+		<param-value>/Second</param-value>
+	</init-param>    
+	<init-param>
+		<param-name>ForthPath</param-name>
+		<param-value>/Forth</param-value>
+	</init-param> 
+	<init-param>
+		<param-name>InterceptButPublic</param-name>
+		<param-value>/Public</param-value>
+	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>login</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
   <servlet>
   	<servlet-name>CreateTeamServlet</servlet-name>
   	<servlet-class>servlet.CreateTeamServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>CreateTeamServlet</servlet-name>
-  	<url-pattern>/servlet/CreateTeamServlet.do</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>DemoServlet</servlet-name>
-  	<servlet-class>servlet.DemoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>DemoServlet</servlet-name>
- 	<url-pattern>/servlet/DemoServlet.do</url-pattern>
+  	<url-pattern>/index/servlet/CreateTeamServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -50,7 +72,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>CreateCompetitionServlet</servlet-name>
- 	<url-pattern>/servlet/CreateCompetitionServlet.do</url-pattern>
+ 	<url-pattern>/Third/servlet/CreateCompetitionServlet.do</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -59,7 +81,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddTeamMemberServlet</servlet-name>
- 	<url-pattern>/servlet/AddTeamMemberServlet.do</url-pattern>
+ 	<url-pattern>/Second/servlet/AddTeamMemberServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -68,7 +90,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>GetTeamInfServlet</servlet-name>
- 	<url-pattern>/servlet/GetTeamInfServlet.do</url-pattern>
+ 	<url-pattern>/Third/servlet/GetTeamInfServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -77,7 +99,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>GetTeamAllMenberInfServlet</servlet-name>
- 	<url-pattern>/servlet/GetTeamAllMenberInfServlet.do</url-pattern>
+ 	<url-pattern>/Public/servlet/GetTeamAllMenberInfServlet.do</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -86,7 +108,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>CompetionStatusSetSevlet</servlet-name>
- 	<url-pattern>/servlet/CompetionStatusSetSevlet.do</url-pattern>
+ 	<url-pattern>/Third/servlet/CompetionStatusSetSevlet.do</url-pattern>
   </servlet-mapping>
   
    <servlet>
@@ -95,7 +117,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>GetCanSignUpCompetitionServlet</servlet-name>
- 	<url-pattern>/servlet/GetCanSignUpCompetitionServlet.do</url-pattern>
+ 	<url-pattern>/index/servlet/GetCanSignUpCompetitionServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -104,7 +126,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>GetCompetionAllInfServlet</servlet-name>
- 	<url-pattern>/servlet/GetCompetionAllInfServlet.do</url-pattern>
+ 	<url-pattern>/index/servlet/GetCompetionAllInfServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -113,7 +135,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>FileUpLoadServlet</servlet-name>
- 	<url-pattern>/servlet/FileUpLoadServlet.do</url-pattern>
+ 	<url-pattern>/Second/servlet/FileUpLoadServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -122,7 +144,7 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddAdvisorServlet</servlet-name>
- 	<url-pattern>/servlet/AddAdvisorServlet.do</url-pattern>
+ 	<url-pattern>/Second/servlet/AddAdvisorServlet.do</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -131,6 +153,26 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>StudentUpdateServlet</servlet-name>
- 	<url-pattern>/servlet/StudentUpdateServlet.do</url-pattern>
+ 	<url-pattern>/Second/servlet/StudentUpdateServlet.do</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>LoginServlet</servlet-name>
+  	<servlet-class>servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginServlet</servlet-name>
+ 	<url-pattern>/login/servlet/LoginServlet.do</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
+  	<servlet-name>ExamingServlet</servlet-name>
+  	<servlet-class>servlet.ExamingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ExamingServlet</servlet-name>
+ 	<url-pattern>/Third/servlet/ExamingServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
